@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ["plugin:react/recommended", "airbnb", "prettier", "react-native"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"

@@ -11,6 +11,7 @@
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/native": "^5.0.5",
     "@react-navigation/stack": "^5.0.5",
+    "eslint-config-react-native": "^4.0.0",
     "eslint-prettier-config": "^1.0.1",
     "expo": "~36.0.0",
     "native-base": "^2.13.8",
