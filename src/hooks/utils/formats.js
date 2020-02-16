@@ -1,5 +1,5 @@
 const convertToFahrenheit = temp => {
-  return (temp * 9) / 5 - 459.67;
+  return ((temp * 9) / 5 - 459.67).toFixed(0);
 };
 
 export const formatWeather = weather => {
