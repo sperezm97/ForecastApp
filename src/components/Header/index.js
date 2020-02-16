@@ -24,7 +24,7 @@ const styles = {
 const Header = ({ left, body, right }) => {
   return (
     <NewHeader style={styles.android}>
-      <Left>{left}</Left>
+      <Left style={{ flex: 1, minWidth: 90 }}>{left}</Left>
       <Body style={{ flex: 2 }}>{body}</Body>
       <Right>{right}</Right>
     </NewHeader>

@@ -55,6 +55,7 @@ const Home = () => {
     getCurrentWeather();
     return () => {
       clearCurrentWeather();
+      setError(false);
     };
   }, [selectedCountry]);
 
@@ -79,7 +80,11 @@ const Home = () => {
             <Icon header name="ios-search" type="Ionicons" active />
           </Button>
         }
-        left={<Text heading>Weather</Text>}
+        left={
+          <Text heading weight="bold">
+            Weather
+          </Text>
+        }
       />
       <Content>
         <WithLoader isLoading={isLoading}>

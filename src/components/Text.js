@@ -24,7 +24,7 @@ const Text = styled(nbText)`
 
   ${is("body")`
     font-size: ${({ theme }) => theme.body}px
-    font-weight: bold;
+    font-weight: 200;
   `};
 
   ${is("caption")`
@@ -33,7 +33,7 @@ const Text = styled(nbText)`
   `};
 
   ${is("value")`
-    font-size: ${({ theme }) => theme.body}px
+    font-size: ${({ theme }) => theme.body + 2}px
     font-weight: bold;
     marginLeft: 20px
   `};

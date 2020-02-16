@@ -18,8 +18,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.forecast",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
-    "android": {}
+    "android": {
+      "package": "com.forecast",
+      "versionCode": 3
+    }
   }
 }

@@ -21,9 +21,11 @@ const BodyCard = props => {
   return (
     <View container="card">
       <CardItem bordered style={{ borderRadius: 20 }}>
-        <View flex>
+        <View style={{ flex: 1 }}>
           <View container="title">
-            <Text header>{props.country}</Text>
+            <Text header weight="bold">
+              {props.country}
+            </Text>
             <Text header weight="bold">
               {temperature}
             </Text>
