@@ -1,8 +1,12 @@
+const convertToFahrenheit = temp => {
+  return (temp * 9) / 5 - 459.67;
+};
+
 export const formatWeather = weather => {
   return {
-    temperature: weather.main.temp,
-    maxTemperature: weather.main.temp_max,
-    minTemperature: weather.main.temp_min,
+    temperature: convertToFahrenheit(weather.main.temp),
+    maxTemperature: convertToFahrenheit(weather.main.temp_max),
+    minTemperature: convertToFahrenheit(weather.main.temp_min),
     humidity: weather.main.humidity,
     pressure: weather.main.pressure,
     latitude: weather.coord.lat,
