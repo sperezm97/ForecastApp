@@ -7,6 +7,7 @@ import * as Font from "expo-font";
 import * as screen from "./src/screens";
 import theme from "./src/hooks/theme";
 import { WeatherProvider } from "./src/hooks/hoc";
+
 const ForeCastStack = createStackNavigator();
 
 export default function App() {

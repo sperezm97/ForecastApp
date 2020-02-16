@@ -10,9 +10,7 @@ const useWeatherContext = () => {
         return {
           ...country,
           selectedCountry: newCountryName,
-          lastCountries: country.lastCountries.splice(
-            country.lastCountries.length
-          )
+          lastCountries: country.lastCountries.splice(0, 1, newCountryName)
         };
       }
       return {
@@ -24,18 +22,34 @@ const useWeatherContext = () => {
   };
 
   const changeCountrySelected = countryName => {
-    dispatch(country => {
-      return {
-        ...country,
-        selectedCountry: countryName
-      };
-    });
+    dispatch(country => ({
+      ...country,
+      selectedCountry: countryName
+    }));
+  };
+
+  const setPersistList = items => {
+    dispatch(country => ({
+      ...country,
+      lastCountries: country.lastCountries.concat(items)
+    }));
+  };
+
+  const deleteCountryFromList = countryIndex => {
+    dispatch(countries => ({
+      ...countries,
+      lastCountries: countries.lastCountries.filter(
+        (country, index) => index != countryIndex
+      )
+    }));
   };
 
   return {
     ...state,
     setCountry: addCountry,
-    changeCountry: changeCountrySelected
+    changeCountry: changeCountrySelected,
+    setPersistList,
+    deleteCountryFromList
   };
 };
 

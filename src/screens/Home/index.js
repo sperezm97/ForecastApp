@@ -6,37 +6,48 @@ import withHOC, { WithLoader } from "../../hooks/hoc";
 import api from "../../config/api";
 import { formatWeather } from "../../hooks/utils/formats";
 import useWeatherContext from "../../hooks/useWeatherContext";
+import { getItem } from "../../hooks/asyncStorage";
 
-const Home = props => {
-  const { selectedCountry } = useWeatherContext();
+const Home = () => {
+  const { selectedCountry, setPersistList } = useWeatherContext();
   const [currentWeather, setCurrentWeather] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   const getCurrentWeather = async () => {
+    setIsLoading(true);
+
     try {
       const { data } = await api.getCityByName(selectedCountry);
       const formattedWeather = formatWeather(data);
       setCurrentWeather(formattedWeather);
+      setIsLoading(false);
     } catch (e) {
-      props.sendNotification("Country not founded", "danger");
+      setIsLoading(false);
     }
   };
 
-  const clearCurrentWeather = () => {
-    setCurrentWeather({});
+  const loadPersisData = async () => {
+    const list = await getItem("list");
+    if (list != null) {
+      setPersistList(list);
+    } else {
+      setPersistList([]);
+    }
   };
 
   useEffect(() => {
     getCurrentWeather();
-    return () => {
-      clearCurrentWeather();
-    };
+    return () => {};
   }, [selectedCountry]);
+
+  useEffect(() => {
+    loadPersisData();
+  }, []);
 
   const onPushSearch = () => {
     navigation.navigate("search");
   };
-
   return (
     <Container>
       <Header
@@ -48,7 +59,11 @@ const Home = props => {
         left={<Text>Weather</Text>}
       />
       <Content>
-        {currentWeather ? <View /> : <BodyCard weather={currentWeather} />}
+        <WithLoader isLoading={isLoading}>
+          {Object.keys(currentWeather).length > 0 && (
+            <BodyCard weather={currentWeather} />
+          )}
+        </WithLoader>
       </Content>
     </Container>
   );

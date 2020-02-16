@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem, Left, Body } from "native-base";
+import { ListItem, Left, Body, Right, Button } from "native-base";
 import PropTypes from "prop-types";
 import { Text, Icon } from "../../../components";
 
@@ -12,12 +12,18 @@ const ItemList = props => {
           <Text>{props.countryName}</Text>
         </Body>
       </Left>
+      <Right>
+        <Button transparent icon onPress={props.onRemoveCountry}>
+          <Icon name="ios-close-circle" type="Ionicons" />
+        </Button>
+      </Right>
     </ListItem>
   );
 };
 
 ItemList.propTypes = {
   countryName: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  onRemoveCountry: PropTypes.func.isRequired
 };
 export default ItemList;

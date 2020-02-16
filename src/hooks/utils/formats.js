@@ -11,7 +11,7 @@ export const formatWeather = weather => {
 };
 
 export const formatTemp = tem => {
-  return `${tem}°`;
+  return `${tem}°F`;
 };
 
 export const formatHumidity = hum => {

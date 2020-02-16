@@ -20,6 +20,7 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "react/destructuring-assignment": 0,
     "react/jsx-wrap-multilines": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    eqeqeq: 0
   }
 };
