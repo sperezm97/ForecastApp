@@ -67,7 +67,7 @@ const Search = () => {
             isSearching &&
             lastCountries.map((country, index) => (
               <ItemList
-                key={country}
+                key={country + index}
                 countryName={country}
                 onPress={() => onPressListItem(country)}
                 onRemoveCountry={() => onRemove(index)}

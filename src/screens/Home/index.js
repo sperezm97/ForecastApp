@@ -20,6 +20,7 @@ import theme from "../../hooks/theme";
 const Home = () => {
   const { selectedCountry, setPersistList } = useWeatherContext();
   const [currentWeather, setCurrentWeather] = useState({});
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
@@ -32,6 +33,7 @@ const Home = () => {
       setCurrentWeather(formattedWeather);
       setIsLoading(false);
     } catch (e) {
+      setError(e.response.status == 404);
       setIsLoading(false);
     }
   };
@@ -45,9 +47,15 @@ const Home = () => {
     }
   };
 
+  const clearCurrentWeather = () => {
+    setCurrentWeather({});
+  };
+
   useEffect(() => {
     getCurrentWeather();
-    return () => {};
+    return () => {
+      clearCurrentWeather();
+    };
   }, [selectedCountry]);
 
   useEffect(() => {
@@ -88,6 +96,12 @@ const Home = () => {
           </View>
           {Object.keys(currentWeather).length > 0 && (
             <BodyCard weather={currentWeather} country={selectedCountry} />
+          )}
+          {error && (
+            <View card="container" center>
+              <Text header>Country not founded</Text>
+              <Icon header name="ios-sad" type="Ionicons" />
+            </View>
           )}
         </WithLoader>
       </Content>
