@@ -20,8 +20,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "permission": ["location"]
-    }
+    "android": {}
   }
 }

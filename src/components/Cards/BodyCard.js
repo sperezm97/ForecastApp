@@ -17,27 +17,51 @@ const BodyCard = props => {
   const humidity = formatHumidity(props.weather.humidity);
   const maxTemperature = formatTemp(props.weather.maxTemperature);
   const minTemperature = formatTemp(props.weather.minTemperature);
+
   return (
-    <Card>
-      <CardItem>
-        <Body>
-          <Text>{temperature}</Text>
-          <Text>{pressure}</Text>
-          <Text>{humidity}</Text>
-          <Text>{maxTemperature}</Text>
-          <Text>{minTemperature}</Text>
-          <MapView
-            style={{ height: 200, width: 200 }}
-            region={{
-              latitude: props.weather.latitude,
-              longitude: props.weather.longitude,
-              latitudeDelta: 0,
-              longitudeDelta: 0
-            }}
-          />
-        </Body>
+    <View container="card">
+      <CardItem bordered style={{ borderRadius: 20 }}>
+        <View flex>
+          <View container="title">
+            <Text header>{props.country}</Text>
+            <Text header weight="bold">
+              {temperature}
+            </Text>
+          </View>
+          <View container="row">
+            <View container="column">
+              <View container="item">
+                <Text body>Pressure:</Text>
+                <Text value>{pressure}</Text>
+              </View>
+              <View container="item">
+                <Text body>Humidity:</Text>
+                <Text value>{humidity}</Text>
+              </View>
+              <View container="item">
+                <Text body>Max Temp:</Text>
+                <Text value>{maxTemperature}</Text>
+              </View>
+              <View container="item">
+                <Text body>Min Temp:</Text>
+                <Text value>{minTemperature}</Text>
+              </View>
+            </View>
+            <View column>
+              <MapView
+                style={{ height: 200, width: 200, borderRadius: 20 }}
+                region={{
+                  latitude: props.weather.latitude,
+                  longitude: props.weather.longitude,
+                  latitudeDelta: 0,
+                  longitudeDelta: 0
+                }}
+              />
+            </View>
+          </View>
+        </View>
       </CardItem>
-    </Card>
+    </View>
   );
 };
 
@@ -50,7 +74,8 @@ BodyCard.propTypes = {
     minTemperature: PropTypes.number,
     latitude: PropTypes.number,
     longitude: PropTypes.number
-  }).isRequired
+  }).isRequired,
+  country: PropTypes.string.isRequired
 };
 
 export default BodyCard;

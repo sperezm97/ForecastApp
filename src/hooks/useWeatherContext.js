@@ -10,7 +10,10 @@ const useWeatherContext = () => {
         return {
           ...country,
           selectedCountry: newCountryName,
-          lastCountries: country.lastCountries.splice(0, 1, newCountryName)
+          lastCountries: [
+            newCountryName,
+            ...country.lastCountries.splice(0, country.lastCountries.length - 1)
+          ]
         };
       }
       return {

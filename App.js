@@ -17,7 +17,12 @@ export default function App() {
     try {
       await Font.loadAsync({
         Roboto: require("native-base/Fonts/Roboto.ttf"),
-        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+        "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
+        "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+        "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+        "Roboto-Thin": require("./assets/fonts/Roboto-Thin.ttf"),
+        "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf")
       });
     } catch (error) {
       console.log(error);

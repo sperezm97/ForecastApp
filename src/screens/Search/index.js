@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Container, Content, Button, Input, Item } from "native-base";
-import { Header, Icon } from "../../components";
+import { Header, Icon, View, Text } from "../../components";
 import ItemList from "./components/ItemList";
 import useWeatherContext from "../../hooks/useWeatherContext";
 import withHOC from "../../hooks/hoc";
 import { setItem, removeItem } from "../../hooks/asyncStorage";
+import theme from "../../hooks/theme";
 
 const Search = () => {
   const [valueInput, setValueInput] = useState("");
+  const [isSearching, setSearching] = useState(false);
   const {
     lastCountries,
     setCountry,
@@ -43,24 +44,27 @@ const Search = () => {
       <Header
         left={
           <Button transparent onPress={() => onBack()} icon>
-            <Icon name="ios-arrow-back" type="Ionicons" />
+            <Icon header name="ios-arrow-back" type="Ionicons" />
           </Button>
         }
       />
       <Content>
-        <View>
+        <View InputContainer>
           <Item>
             <Input
               value={valueInput}
               onChangeText={setValueInput}
+              placeholder="Write your favorite country"
               blurOnSubmit
               onSubmitEditing={() => setContextSelected()}
+              onTouchStart={() => setSearching(true)}
+              selectionColor={theme.ink}
             />
           </Item>
         </View>
         <View>
-          <View />
           {lastCountries.length > 0 &&
+            isSearching &&
             lastCountries.map((country, index) => (
               <ItemList
                 key={country}

@@ -1,5 +1,12 @@
 import { AsyncStorage } from "react-native";
 
+export const verifyExceedLimit = (items, item) => {
+  if (items.length >= 5) {
+    return [item, ...items.splice(0, items.length - 1)];
+  }
+  return [item, ...items];
+};
+
 export const getItem = async key => {
   const item = await AsyncStorage.getItem(key);
   return JSON.parse(item);
@@ -8,7 +15,7 @@ export const getItem = async key => {
 export const setItem = async (key, data) => {
   let items = await getItem(key);
   if (items != null) {
-    items = items.concat(data);
+    items = verifyExceedLimit(items, data);
     await AsyncStorage.setItem(key, JSON.stringify(items));
   }
 };

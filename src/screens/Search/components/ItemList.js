@@ -1,20 +1,30 @@
 import React from "react";
 import { ListItem, Left, Body, Right, Button } from "native-base";
 import PropTypes from "prop-types";
-import { Text, Icon } from "../../../components";
+import { Text, Icon, View } from "../../../components";
+import theme from "../../../hooks/theme";
 
 const ItemList = props => {
   return (
-    <ListItem onPress={props.onPress}>
+    <ListItem noIndent onPress={props.onPress}>
       <Left>
-        <Icon name="ios-clock" type="Ionicons" />
+        <View>
+          <Icon name="ios-clock" type="Ionicons" list color={theme.lightGrey} />
+        </View>
         <Body>
-          <Text>{props.countryName}</Text>
+          <Text listItem color={theme.lightGrey}>
+            {props.countryName}
+          </Text>
         </Body>
       </Left>
       <Right>
-        <Button transparent icon onPress={props.onRemoveCountry}>
-          <Icon name="ios-close-circle" type="Ionicons" />
+        <Button transparent onPress={props.onRemoveCountry}>
+          <Icon
+            name="ios-close-circle"
+            type="Ionicons"
+            list
+            color={theme.red}
+          />
         </Button>
       </Right>
     </ListItem>

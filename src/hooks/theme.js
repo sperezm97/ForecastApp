@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+
 export default {
   // COLORS
   white: "#fff",
@@ -6,6 +7,8 @@ export default {
   primaryColor: "#ff7043",
   primaryColorLight: "#ffa270",
   primaryColorDark: "#c63f17",
+  lightGrey: "#cdcdcd",
+  ink: "#333333",
   yellow: "#FFFF00",
   green: "#00FF00 ",
   red: "#FF0000 ",
@@ -18,7 +21,8 @@ export default {
   extraXLarge: 25,
 
   // Fonts
-  body: 15,
+  caption: 13,
+  body: 16,
   subHeading: 17,
   heading: 21,
   displaySmall: 16,
